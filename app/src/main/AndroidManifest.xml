@@ -26,10 +26,10 @@
         android:theme="@style/Theme.NetCharge"
         tools:targetApi="31">
 
-        <service
-            android:name=".location.LocationService"
-            android:foregroundServiceType="location"
-            android:exported="false"/>
+<!--        <service-->
+<!--            android:name=".location.LocationService"-->
+<!--            android:foregroundServiceType="location"-->
+<!--            android:exported="false"/>-->
 
         <activity
             android:name=".MainActivity"
