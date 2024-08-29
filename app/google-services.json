@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "652988569421",
+    "project_id": "netcharge-5a175",
+    "storage_bucket": "netcharge-5a175.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:652988569421:android:364881afa3bae11edb4904",
+        "android_client_info": {
+          "package_name": "com.example.netcharge"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6yeC8kHd1XEk0nRszqV_5TBg8qEVlgUw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
