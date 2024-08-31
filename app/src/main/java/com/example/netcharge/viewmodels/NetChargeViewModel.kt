@@ -21,20 +21,20 @@ class NetChargeViewModel: ViewModel() {
     val rateRepository = RateRepositoryImpl()
 
     private val _netchargeFlow = MutableStateFlow<Resource<String>?>(null)
-    val beachFlow: StateFlow<Resource<String>?> = _netchargeFlow
+    val netchargeFlow: StateFlow<Resource<String>?> = _netchargeFlow
 
     private val _newRate = MutableStateFlow<Resource<String>?>(null)
     val newRate: StateFlow<Resource<String>?> = _newRate
 
     private val _netcharges = MutableStateFlow<Resource<List<NetCharge>>>(Resource.Success(emptyList()))
-    val beaches: StateFlow<Resource<List<NetCharge>>> get() = _netcharges
+    val netcharges: StateFlow<Resource<List<NetCharge>>> get() = _netcharges
 
     private val _rates = MutableStateFlow<Resource<List<Rate>>>(Resource.Success(emptyList()))
     val rates: StateFlow<Resource<List<Rate>>> get() = _rates
 
 
     private val _userNetCharges = MutableStateFlow<Resource<List<NetCharge>>>(Resource.Success(emptyList()))
-    val userBeaches: StateFlow<Resource<List<NetCharge>>> get() = _userNetCharges
+    val userNetCharges: StateFlow<Resource<List<NetCharge>>> get() = _userNetCharges
 
     init {
         getAllNetCharges()
@@ -93,7 +93,7 @@ class NetChargeViewModel: ViewModel() {
     }
 }
 
-class BeachViewModelFactory: ViewModelProvider.Factory{
+class NetChargeViewModelFactory: ViewModelProvider.Factory{
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(NetChargeViewModel::class.java)){
             return NetChargeViewModel() as T
