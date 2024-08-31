@@ -2,6 +2,7 @@ package com.example.netcharge.viewmodels
 
 import android.net.Uri
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.netcharge.data.AuthRepositoryImp
 import com.example.netcharge.data.Resource
@@ -61,6 +62,13 @@ class AuthViewModel(): ViewModel(){
         _registerFlow.value = null
         _currentUserFlow.value = null
     }
+}
 
-
+class AuthViewModelFactory: ViewModelProvider.Factory{
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if(modelClass.isAssignableFrom(AuthViewModel::class.java)){
+            return AuthViewModel() as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
 }
