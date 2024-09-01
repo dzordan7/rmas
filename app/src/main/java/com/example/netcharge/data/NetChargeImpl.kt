@@ -8,7 +8,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.storage.FirebaseStorage
-import com.google.type.LatLng
+//import com.google.type.LatLng
+import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.tasks.await
 
 class NetChargeImpl: NetChargeRepository {

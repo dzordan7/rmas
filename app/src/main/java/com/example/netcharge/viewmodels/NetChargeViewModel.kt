@@ -6,15 +6,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.netcharge.data.NetChargeImpl
-import com.example.netcharge.data.NetChargeRepository
 import com.example.netcharge.data.RateRepositoryImpl
 import com.example.netcharge.data.Resource
 import com.example.netcharge.models.NetCharge
 import com.example.netcharge.models.Rate
-import com.google.type.LatLng
+//import com.google.type.LatLng
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import com.google.android.gms.maps.model.LatLng
 
 class NetChargeViewModel: ViewModel() {
     val repository = NetChargeImpl()

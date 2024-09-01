@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AquaSpot</string>
+    <string name="app_name">NetCharge</string>
     <string name="welcome_text">Krenimo Odmah</string>
     <string name="login_text">Prijavite se za nastavak</string>
     <string name="email_input_text">Email adresa</string>
@@ -27,6 +27,6 @@
     <string name="search_text">Pretraži</string>
 
 
-    <string name="add_new_beach_heading">Dodaj novu plažu na ovoj lokaciji</string>
+    <string name="add_new_netcharge_heading">Dodaj novo mesto na ovoj lokaciji</string>
 
 </resources>

@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
                 NetCharge(userViewModel,netChargeViewModel)
-//            AquaSpot(viewModel = userViewModel)
+
         }
     }
 }

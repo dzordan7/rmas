@@ -691,8 +691,8 @@ fun mapNavigationBar(
                                     modifier = Modifier.fillMaxWidth()
                                         .clickable {
                                             val netchargeJson = Gson().toJson(netcharge)
-                                            val encodedBeachJson = URLEncoder.encode(netchargeJson, StandardCharsets.UTF_8.toString())
-                                            navController?.navigate(Routes.netchargeScreen + "/$encodedBeachJson")
+                                            val encodedNetChargeJson = URLEncoder.encode(netchargeJson, StandardCharsets.UTF_8.toString())
+                                            navController?.navigate(Routes.netchargeScreen + "/$encodedNetChargeJson")
                                         },
                                     verticalAlignment = Alignment.CenterVertically,
                                     horizontalArrangement = Arrangement.SpaceBetween
@@ -786,7 +786,7 @@ fun mapNavigationBar(
 
 @Composable
 fun mapFooter(
-    openAddNewBeach: () -> Unit,
+    openAddNewNetCharge: () -> Unit,
     active: Int,
     onHomeClick: () -> Unit,
     onTableClick: () -> Unit,
@@ -865,7 +865,7 @@ fun mapFooter(
                 .offset(y = (-30).dp)  // Negative offset to overlap the footer
                 .size(90.dp)  // Adjust size as needed
         ) {
-            IconButton(onClick = openAddNewBeach,
+            IconButton(onClick = openAddNewNetCharge,
                 modifier = Modifier.fillMaxSize()) {
                 Image(
                     painter = painterResource(id = R.drawable.searchcomponent),
@@ -1034,7 +1034,8 @@ fun CustomImageForNewNetCharge(
 
 
 @Composable
-fun CustomGalleryForAddNewBeach(
+fun CustomGalleryForAddNewNetCharge(
+
     selectedImages: MutableState<List<Uri>>
 ) {
     val pickImagesLauncher = rememberLauncherForActivityResult(

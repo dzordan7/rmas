@@ -2,6 +2,7 @@
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -14,6 +15,8 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+
+
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -62,17 +65,37 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
-    val nav_version = "2.7.7"
-    implementation("androidx.navigation:navigation-compose:$nav_version")
+//    val nav_version = "2.7.7"
+//    implementation("androidx.navigation:navigation-compose:$nav_version")
+//    implementation("androidx.compose.material:material-icons-extended:1.0.0-alpha08")
+//    implementation("androidx.compose.material:material:1.6.7")
+//    implementation("io.coil-kt:coil-compose:2.6.0")
+//    implementation("com.google.firebase:firebase-storage:20.2.0")
+//    implementation("com.google.maps.android:maps-compose:4.4.1")
+//    implementation ("com.google.android.gms:play-services-maps:18.2.0")
+//    implementation ("com.google.android.gms:play-services-location:21.2.0")
+//    implementation("com.google.accompanist:accompanist-permissions:0.31.1-alpha")
+//    implementation("com.google.code.gson:gson:2.8.6")
+
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.firebase:firebase-auth:21.1.0")
+    implementation("com.google.firebase:firebase-firestore:24.2.1")
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
+    implementation("com.google.android.gms:play-services-location:21.2.0")
+    implementation("com.google.maps.android:maps-compose:4.4.1")
+    implementation("com.google.accompanist:accompanist-permissions:0.31.1-alpha")
+    implementation("io.coil-kt:coil-compose:2.6.0")
+    implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation("androidx.compose.material:material-icons-extended:1.0.0-alpha08")
     implementation("androidx.compose.material:material:1.6.7")
-    implementation("io.coil-kt:coil-compose:2.6.0")
-    implementation("com.google.firebase:firebase-storage:20.2.0")
-    implementation("com.google.maps.android:maps-compose:4.4.1")
-    implementation ("com.google.android.gms:play-services-maps:18.2.0")
-    implementation ("com.google.android.gms:play-services-location:21.2.0")
-    implementation("com.google.accompanist:accompanist-permissions:0.31.1-alpha")
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.6.7")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:1.6.7")
+    implementation(kotlin("script-runtime"))
     implementation("com.google.code.gson:gson:2.8.6")
+
     implementation(libs.firebase.storage)
     implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)

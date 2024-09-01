@@ -5,6 +5,8 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -16,6 +18,7 @@ import com.example.netcharge.router.Router
 import com.example.netcharge.viewmodels.AuthViewModel
 import com.example.netcharge.viewmodels.NetChargeViewModel
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun NetCharge(
     viewModel: AuthViewModel,

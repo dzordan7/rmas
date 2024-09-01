@@ -10,8 +10,8 @@ val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
-val mainColor = Color(0xFF79EA99)
-val lightMailColor = Color(0xFF79EA99)
+val mainColor = Color(0xFF4799CF)
+val lightMailColor = Color(0xFF5DB0E7)
 val lightMainColor2 = Color(0xFFd0f7db)
 val lightRedColor = Color(0xFFFEBFBF)
 

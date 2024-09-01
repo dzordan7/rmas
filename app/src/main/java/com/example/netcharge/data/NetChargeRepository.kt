@@ -2,7 +2,8 @@ package com.example.netcharge.data
 
 import android.net.Uri
 import com.example.netcharge.models.NetCharge
-import com.google.type.LatLng
+//import com.google.type.LatLng
+import com.google.android.gms.maps.model.LatLng
 
 interface NetChargeRepository {
 

@@ -30,7 +30,7 @@ import kotlin.math.sqrt
 class LocationService : Service() {
     private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     private lateinit var locationClient: LocationClient
-    private val notifiedBeaches = mutableSetOf<String>()
+    private val notifiedNetCharges = mutableSetOf<String>()
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
@@ -80,7 +80,7 @@ class LocationService : Service() {
                 }
                 LocalBroadcastManager.getInstance(applicationContext).sendBroadcast(intent)
                 if(nearby){
-                    checkProximityToBeaches(location.latitude, location.longitude)
+                    checkProximityToNetCharges(location.latitude, location.longitude)
                 }
             }.launchIn(serviceScope)
     }
@@ -130,24 +130,24 @@ class LocationService : Service() {
             .setOngoing(true)
             .build()
     }
-    private fun checkProximityToBeaches(latitude: Double, longitude: Double) {
+    private fun checkProximityToNetCharges(latitude: Double, longitude: Double) {
         val firestore = FirebaseFirestore.getInstance()
-        firestore.collection("beaches").get()
+        firestore.collection("netcharges").get()
             .addOnSuccessListener { result ->
                 for (document in result) {
                     val geoPoint = document.getGeoPoint("location")
                     geoPoint?.let {
                         val distance = calculateDistance(latitude, longitude, it.latitude, it.longitude)
-                        if (distance <= 100 && !notifiedBeaches.contains(document.id)) {
-                            sendNearbyBeachNotification()
-                            notifiedBeaches.add(document.id)
+                        if (distance <= 100 && !notifiedNetCharges.contains(document.id)) {
+                            sendNearbyNetChargeNotification()
+                            notifiedNetCharges.add(document.id)
                             Log.d("U blizini", document.toString())
                         }
                     }
                 }
             }
             .addOnFailureListener { e ->
-                Log.e("LocationService", "Error fetching beaches", e)
+                Log.e("LocationService", "Error fetching netcharges", e)
             }
     }
     private fun calculateDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
@@ -165,7 +165,7 @@ class LocationService : Service() {
         return earthRadius * c
     }
 
-    private fun sendNearbyBeachNotification() {
+    private fun sendNearbyNetChargeNotification() {
         val notificationChannelId = "LOCATION_SERVICE_CHANNEL"
 
         val notificationIntent = Intent(this, MainActivity::class.java)
@@ -177,14 +177,14 @@ class LocationService : Service() {
         )
 
         val notification = NotificationCompat.Builder(this, notificationChannelId)
-            .setContentTitle("Plaza u blizini")
-            .setContentText("Nalazite se u blizini neke plaže!")
+            .setContentTitle("NetCharge mesto u blizini")
+            .setContentText("Nalazite se u blizini nekog NetCharge mesta!")
             .setSmallIcon(R.drawable.logo)
             .setContentIntent(pendingIntent)
             .build()
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.notify(NEARBY_BEACH_NOTIFICATION_ID, notification)
+        notificationManager.notify(NEARBY_NETCHARGE_NOTIFICATION_ID, notification)
     }
 
     companion object {
@@ -195,6 +195,6 @@ class LocationService : Service() {
         const val EXTRA_LOCATION_LATITUDE = "EXTRA_LOCATION_LATITUDE"
         const val EXTRA_LOCATION_LONGITUDE = "EXTRA_LOCATION_LONGITUDE"
         private const val NOTIFICATION_ID = 1
-        private const val NEARBY_BEACH_NOTIFICATION_ID = 2
+        private const val NEARBY_NETCHARGE_NOTIFICATION_ID = 2
     }
 }
