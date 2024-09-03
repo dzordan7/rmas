@@ -146,7 +146,7 @@ fun registerImage(
     ) {
         if (selectedImageUri.value == Uri.EMPTY) {
             Image(
-                painter = painterResource(id = R.drawable.profile),
+                painter = painterResource(id = R.drawable.addphoto_foreground),
                 contentDescription = "Profile Image",
                 modifier = Modifier
                     .size(140.dp)
@@ -463,7 +463,7 @@ fun loginRegisterCustomButton(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 2.dp)
-            .height(50.dp)
+            .height(45.dp)
             .shadow(6.dp, shape = RoundedCornerShape(20.dp)),
         colors = ButtonDefaults.buttonColors(
             containerColor = mainColor,

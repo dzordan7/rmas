@@ -252,8 +252,8 @@ fun RegisterScreen(
     }
 }
 
-@Preview
-@Composable
-fun showRegisterScreen(){
-    RegisterScreen(viewModel = null, navController = null)
-}
+//@Preview
+//@Composable
+//fun showRegisterScreen(){
+//    RegisterScreen(viewModel = null, navController = null)
+//}

@@ -2,9 +2,11 @@ package com.example.netcharge.screens
 
 import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -15,6 +17,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -65,11 +68,28 @@ fun LoginScreen(
             .background(Color.White)
             .padding(20.dp)
     ) {
-        loginImage()
-        headingText(textValue = stringResource(id = R.string.welcome_text))
+        Spacer(modifier = Modifier.height(10.dp))
+        Box(modifier = Modifier
+            .fillMaxWidth(),
+            contentAlignment = Alignment.Center
+
+        ) {
+            headingText(textValue = stringResource(id = R.string.welcome_text))
+        }
+
         Spacer(modifier = Modifier.height(5.dp))
-        greyText(textValue = stringResource(id = R.string.login_text))
-        Spacer(modifier = Modifier.height(20.dp))
+
+        loginImage()
+
+        Box(modifier = Modifier
+            .fillMaxWidth(),
+            contentAlignment = Alignment.Center
+
+        ) {
+            greyText(textValue = stringResource(id = R.string.login_text))
+        }
+
+        Spacer(modifier = Modifier.height(10.dp))
         if (isError.value) customAuthError(errorText = errorText.value)
         Spacer(modifier = Modifier.height(20.dp))
         inputTextIndicator(textValue = stringResource(id = R.string.email_input_text))
@@ -92,10 +112,10 @@ fun LoginScreen(
             isError = isPasswordError,
             errorText = passwordErrorText
         )
-        customClickableText(firstText = "Još uvek nemate nalog? ", secondText = "Registruj se", onClick = {
+        customClickableText(firstText = "Nemas nalog? ", secondText = "Registruj se", onClick = {
             navController.navigate(Routes.registerScreen)
         })
-        Spacer(modifier = Modifier.height(50.dp))
+        Spacer(modifier = Modifier.height(25.dp))
         loginRegisterCustomButton(
             buttonText = stringResource(id = R.string.login_button),
             isEnabled = buttonIsEnabled,
