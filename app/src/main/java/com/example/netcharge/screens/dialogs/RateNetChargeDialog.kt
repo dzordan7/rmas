@@ -68,9 +68,8 @@ fun RateNetChargeDialog(
                     Column(
                         modifier = Modifier.fillMaxWidth()
                     ) {
-//                        Image(painter = painterResource(id = R.drawable.cutestar), contentDescription = "")
                         Text(
-                            text = "Kako biste ocenili ovu plažu?",
+                            text = "Kako biste ocenili ovo NetCharge mesto?",
                             style = TextStyle(
                                 fontSize = 24.sp,
                                 textAlign = TextAlign.Center,
