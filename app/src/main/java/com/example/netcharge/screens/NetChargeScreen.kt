@@ -27,7 +27,7 @@ import com.example.netcharge.models.NetCharge
 import com.example.netcharge.models.Rate
 import com.example.netcharge.router.Routes
 import com.example.netcharge.screens.components.CustomBackButton
-import com.example.netcharge.screens.components.CustomCrowdIndicator
+import com.example.netcharge.screens.components.CustomTypeChargerIndicator
 import com.example.netcharge.screens.components.CustomNetChargeGallery
 import com.example.netcharge.screens.components.CustomNetChargeLocation
 import com.example.netcharge.screens.components.CustomNetChargeRate
@@ -96,7 +96,7 @@ fun NetChargeScreen(
             }
             }
             item{ Spacer(modifier = Modifier.height(220.dp)) }
-            item{ CustomCrowdIndicator(crowd = netCharge.crowd) }
+            item{ CustomTypeChargerIndicator(typeCharger = netCharge.typeCharger) }
             item{ Spacer(modifier = Modifier.height(20.dp)) }
             item{ headingText(textValue = "NetCharge mesto u blizini") }
             item{ Spacer(modifier = Modifier.height(10.dp)) }

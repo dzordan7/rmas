@@ -104,7 +104,7 @@ fun IndexScreen(
     val context = LocalContext.current
     val sharedPreferences = context.getSharedPreferences("filters", Context.MODE_PRIVATE)
     val options = sharedPreferences.getString("options", null)
-    val crowd = sharedPreferences.getString("crowd", null)
+    val typeCharger = sharedPreferences.getString("charger", null)
     val range = sharedPreferences.getFloat("range", 1000f)
 
     val isFiltered = remember {
@@ -114,7 +114,7 @@ fun IndexScreen(
         mutableStateOf(false)
     }
 
-    if(isFilteredParam && (options != null || crowd != null || range != 1000f)){
+    if(isFilteredParam && (options != null || typeCharger != null || range != 1000f)){
         isFilteredIndicator.value = true
     }
 
@@ -250,10 +250,8 @@ fun IndexScreen(
                 Log.d("Is Filtered", isFiltered.value.toString())
                 if(!isFiltered.value) {
                     netChargeMarkers.forEach { marker ->
-                        val icon = bitmapDescriptorFromUrlWithRoundedCorners(
-                            context,
-                            marker.mainImage,
-                            10f,
+                        val icon = bitmapDescriptorFromVector(
+                            context, R.drawable.ncpin_foreground
                         )
                         Marker(
                             state = rememberMarkerState(
@@ -263,7 +261,7 @@ fun IndexScreen(
                                 )
                             ),
                             title = "Moja Lokacija",
-                            icon = icon.value ?: BitmapDescriptorFactory.defaultMarker(),
+                            icon = icon ?: BitmapDescriptorFactory.defaultMarker(),
                             snippet = marker.description,
                             onClick = {
                                 val NetChargeJson = Gson().toJson(marker)

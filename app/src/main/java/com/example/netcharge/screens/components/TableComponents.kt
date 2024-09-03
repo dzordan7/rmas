@@ -106,7 +106,7 @@ fun CustomTableHeader() {
 
         Box(modifier = boxModifier.width(120.dp)) {
             Text(
-                text = "Gužva",
+                text = "Tip punjaca",
                 style = TextStyle(
                     fontSize = 20.sp
                 )
@@ -156,7 +156,7 @@ fun CustomTableRow(
         }
 
         Box(modifier = boxModifier.width(120.dp)) {
-            CustomCrowdIndicator(crowd = netcharge.crowd)
+            CustomTypeChargerIndicator(typeCharger = netcharge.typeCharger)
         }
         Box(modifier = boxModifier.width(50.dp)) {
             IconButton(

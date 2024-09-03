@@ -15,6 +15,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.BatteryChargingFull
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.People
 import androidx.compose.material.icons.filled.Star
@@ -90,8 +91,8 @@ fun CustomNetChargeRate(
 }
 
 @Composable
-fun CustomCrowdIndicator(
-    crowd: Int
+fun CustomTypeChargerIndicator(
+    typeCharger: Int
 ){
     Row(
         modifier = Modifier.fillMaxWidth(),
@@ -100,9 +101,9 @@ fun CustomCrowdIndicator(
         Box(
             modifier = Modifier
                 .background(
-                    if (crowd == 0) Color.Green
-                    else if (crowd == 1) Color.Yellow
-                    else Color.Red, shape = RoundedCornerShape(5.dp)
+                    if (typeCharger == 0) Color.Green
+                    else Color.Yellow
+
                 )
                 .border(
                     1.dp,
@@ -116,15 +117,17 @@ fun CustomCrowdIndicator(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
-                    imageVector = Icons.Filled.People,
+                    imageVector = Icons.Filled.BatteryChargingFull,
                     contentDescription = "",
                     tint = Color.Black
                 )
                 Spacer(modifier = Modifier.width(5.dp))
                 inputTextIndicator(textValue =
-                if(crowd == 0) "Slaba gužva"
-                else if(crowd == 1) "Umerena gužva"
-                else "Velika gužva"
+                if(typeCharger == 0) "Standardni punjac"
+                else {
+                    "Brzi punjac"
+                }
+
                 )
             }
         }

@@ -20,7 +20,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.netcharge.R
 import com.example.netcharge.data.Resource
-import com.example.netcharge.screens.components.CustomCrowd
+import com.example.netcharge.screens.components.CustomTypeCharge
 import com.example.netcharge.screens.components.CustomGalleryForAddNewNetCharge
 import com.example.netcharge.screens.components.CustomImageForNewNetCharge
 import com.example.netcharge.screens.components.customRichTextInput
@@ -82,9 +82,9 @@ fun AddNewNetChargeBottomSheet(
         item{ Spacer(modifier = Modifier.height(5.dp)) }
         item{ customRichTextInput(inputValue = inputDescription, inputText = "Unesite opis", isError = isDescriptionError, errorText = descriptionError) }
         item{ Spacer(modifier = Modifier.height(20.dp)) }
-        item{inputTextIndicator(textValue = "Gužva")}
+        item{inputTextIndicator(textValue = "Tip punjaca")}
         item{ Spacer(modifier = Modifier.height(5.dp)) }
-        item{ CustomCrowd(selectedOption) }
+        item{ CustomTypeCharge(selectedOption) }
         item{ Spacer(modifier = Modifier.height(20.dp)) }
         item{inputTextIndicator(textValue = "Galerija")}
         item{ Spacer(modifier = Modifier.height(5.dp)) }
@@ -96,7 +96,7 @@ fun AddNewNetChargeBottomSheet(
             buttonIsLoading.value = true
             netChargeViewModel?.saveNetChargeData(
                 description = inputDescription.value,
-                crowd = selectedOption.value,
+                typeCharger = selectedOption.value,
                 mainImage = selectedImage.value!!,
                 galleryImages = selectedGallery.value,
                 location = location

@@ -24,7 +24,7 @@ import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.ArrowDropUp
-import androidx.compose.material.icons.filled.People
+import androidx.compose.material.icons.filled.BatteryChargingFull
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenu
@@ -92,7 +92,7 @@ fun FiltersBottomSheet(
 
     val sharedPreferences = context.getSharedPreferences("filters", Context.MODE_PRIVATE)
     val options = sharedPreferences.getString("options", null)
-    val crowd = sharedPreferences.getString("crowd", null)
+    val typeCharger = sharedPreferences.getString("crowd", null)
     val range = sharedPreferences.getFloat("range", 1000f)
 
 
@@ -101,17 +101,17 @@ fun FiltersBottomSheet(
     }
     val rangeValues = remember { mutableFloatStateOf(1000f) }
 
-    var selectedCrowd = remember {
+    var selectedTypeCharger = remember {
         mutableListOf<Int>()
     }
     val filtersSet = remember {
         mutableStateOf(false)
     }
 
-    if (isFilteredIndicator.value && crowd != null) {
+    if (isFilteredIndicator.value && typeCharger != null) {
         val type = object : TypeToken<List<Int>>() {}.type
-        val savedCrowd: List<Int> = Gson().fromJson(crowd, type) ?: emptyList()
-        selectedCrowd = savedCrowd.toMutableList()
+        val savedCrowd: List<Int> = Gson().fromJson(typeCharger, type) ?: emptyList()
+        selectedTypeCharger = savedCrowd.toMutableList()
     }
     if (isFilteredIndicator.value && options != null) {
         val type = object : TypeToken<List<Boolean>>() {}.type
@@ -228,14 +228,14 @@ fun FiltersBottomSheet(
 
         Spacer(modifier = Modifier.height(16.dp))
         Text(
-            text = "Gužva",
+            text = "Tip punjaca",
             style = TextStyle(
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold
             )
         )
         Spacer(modifier = Modifier.height(8.dp))
-        CustomCrowdSelector(selectedCrowd)
+        CustomTypeChargerSelector(selectedTypeCharger)
         Spacer(modifier = Modifier.height(16.dp))
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -283,11 +283,11 @@ fun FiltersBottomSheet(
                 }
             }
 
-            if (selectedCrowd.isNotEmpty()) {
-                filteredNetCharges.retainAll { it.crowd in selectedCrowd }
-                val crowdJson = Gson().toJson(selectedCrowd)
+            if (selectedTypeCharger.isNotEmpty()) {
+                filteredNetCharges.retainAll { it.typeCharger in selectedTypeCharger }
+                val chargerJson = Gson().toJson(selectedTypeCharger)
                 with(sharedPreferences.edit()) {
-                    putString("crowd", crowdJson)
+                    putString("charger", chargerJson)
                     apply()
                 }
             }
@@ -413,7 +413,7 @@ fun DropdownWithCheckboxes(
 }
 
 @Composable
-fun CustomCrowdSelector(
+fun CustomTypeChargerSelector(
     selected: MutableList<Int>
 ){
     Row(
@@ -421,14 +421,13 @@ fun CustomCrowdSelector(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        CrowdOption("Slaba", 0, selected)
-        CrowdOption("Umerena", 1, selected)
-        CrowdOption("Velika", 2, selected)
+        TypeChargerOption("Standardni", 0, selected)
+        TypeChargerOption("Brzi", 1, selected)
     }
 }
 
 @Composable
-fun CrowdOption(
+fun TypeChargerOption(
     text: String,
     index: Int,
     selected: MutableList<Int>
@@ -437,6 +436,8 @@ fun CrowdOption(
 
     Box(
         modifier = Modifier
+
+            .width(170.dp)
             .background(
                 if (isSelected.value) lightGreyColor else Color.White,
                 RoundedCornerShape(10.dp)
@@ -460,7 +461,7 @@ fun CrowdOption(
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Icon(imageVector = Icons.Filled.People, contentDescription = "")
+            Icon(imageVector = Icons.Filled.BatteryChargingFull, contentDescription = "")
             Spacer(modifier = Modifier.width(5.dp))
             Text(text = text)
         }

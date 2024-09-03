@@ -102,7 +102,6 @@ import com.google.gson.Gson
 import com.google.maps.android.compose.CameraPositionState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.jetbrains.annotations.Async
 import java.net.URL
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
@@ -688,10 +687,14 @@ fun mapNavigationBar(
                         for (netcharge in searchList) {
                             item {
                                 Row(
-                                    modifier = Modifier.fillMaxWidth()
+                                    modifier = Modifier
+                                        .fillMaxWidth()
                                         .clickable {
                                             val netchargeJson = Gson().toJson(netcharge)
-                                            val encodedNetChargeJson = URLEncoder.encode(netchargeJson, StandardCharsets.UTF_8.toString())
+                                            val encodedNetChargeJson = URLEncoder.encode(
+                                                netchargeJson,
+                                                StandardCharsets.UTF_8.toString()
+                                            )
                                             navController?.navigate(Routes.netchargeScreen + "/$encodedNetChargeJson")
                                         },
                                     verticalAlignment = Alignment.CenterVertically,
@@ -715,9 +718,9 @@ fun mapNavigationBar(
                                         Spacer(modifier = Modifier.width(10.dp))
                                         Text(
                                             text = if (netcharge.description.length > 26) {
-                                                netcharge.description.substring(0, 26) + "..."
+                                                netcharge.description.replace('+',' ').substring(0, 26) + "..."
                                             } else {
-                                                netcharge.description
+                                                netcharge.description.replace('+',' ')
                                             }
                                         )
                                     }
@@ -878,7 +881,7 @@ fun mapFooter(
 }
 
 @Composable
-fun CustomCrowd(
+fun CustomTypeCharge(
     selectedOption: MutableState<Int>
 ){
     val customModifier = Modifier
@@ -906,7 +909,7 @@ fun CustomCrowd(
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Row(modifier = Modifier
-            .width(100.dp)
+            .weight(1f)
             .height(40.dp)
         ) {
             Box(
@@ -919,11 +922,14 @@ fun CustomCrowd(
                     },
                 contentAlignment = Alignment.Center
             ) {
-                Text(text = "Slabo")
+                Text(text = "Standardni")
             }
         }
+        Spacer(modifier = Modifier
+            .width(10.dp)
+        )
         Row(modifier = Modifier
-            .width(100.dp)
+            .weight(1f)
             .height(40.dp)
         ) {
             Box(
@@ -936,26 +942,10 @@ fun CustomCrowd(
                     },
                 contentAlignment = Alignment.Center
             ) {
-                Text(text = "Srednje")
+                Text(text = "Brzi")
             }
         }
-        Row(modifier = Modifier
-            .width(100.dp)
-            .height(40.dp)
-        ) {
-            Box(
-                modifier =
-                if(selectedOption.value == 2)
-                    customModifier.background(Color.Red)
-                else
-                    customModifier.clickable {
-                        selectedOption.value = 2
-                    },
-                contentAlignment = Alignment.Center
-            ) {
-                Text(text = "Mnogo")
-            }
-        }
+
     }
 }
 
@@ -1123,6 +1113,10 @@ fun bitmapDescriptorFromVector(
     drawable.draw(canvas)
     return BitmapDescriptorFactory.fromBitmap(bm)
 }
+
+
+
+
 @Composable
 fun bitmapDescriptorFromUrlWithRoundedCorners(
     context: Context,

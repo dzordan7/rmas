@@ -34,7 +34,7 @@ class NetChargeImpl: NetChargeRepository {
 
     override suspend fun saveNetChargeData(
         description: String,
-        crowd: Int,
+        typeCharger: Int,
         mainImage: Uri,
         galleryImages: List<Uri>,
         location: LatLng
@@ -51,7 +51,7 @@ class NetChargeImpl: NetChargeRepository {
                 val netcharge = NetCharge(
                     userId = currentUser.uid,
                     description = description,
-                    crowd = crowd,
+                    typeCharger = typeCharger,
                     mainImage = mainImageUrl,
                     galleryImages = galleryImagesUrls,
                     location = geoLocation

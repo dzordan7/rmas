@@ -46,7 +46,7 @@ class NetChargeViewModel: ViewModel() {
 
     fun saveNetChargeData(
         description: String,
-        crowd: Int,
+        typeCharger: Int,
         mainImage: Uri,
         galleryImages: List<Uri>,
         location: MutableState<LatLng?>
@@ -54,7 +54,7 @@ class NetChargeViewModel: ViewModel() {
         _netchargeFlow.value = Resource.loading
         repository.saveNetChargeData(
             description = description,
-            crowd = crowd,
+            typeCharger = typeCharger,
             mainImage = mainImage,
             galleryImages = galleryImages,
             location = location.value!!
