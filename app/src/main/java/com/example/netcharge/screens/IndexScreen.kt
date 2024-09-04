@@ -279,10 +279,8 @@ fun IndexScreen(
                 }else{
                     Log.d("Filtered", filteredNetCharges.count().toString())
                     filteredNetCharges.forEach { marker ->
-                        val icon = bitmapDescriptorFromUrlWithRoundedCorners(
-                            context,
-                            marker.mainImage,
-                            10f,
+                        val icon = bitmapDescriptorFromVector(
+                            context, R.drawable.ncpin_foreground
                         )
                         Marker(
                             state = rememberMarkerState(
@@ -292,7 +290,7 @@ fun IndexScreen(
                                 )
                             ),
                             title = "Moja Lokacija",
-                            icon = icon.value ?: BitmapDescriptorFactory.defaultMarker(),
+                            icon = icon ?: BitmapDescriptorFactory.defaultMarker(),
                             snippet = marker.description,
                             onClick = {
                                 val NetChargeJson = Gson().toJson(marker)
